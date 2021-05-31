@@ -1,10 +1,4 @@
-// Mixed Messages
-// (Codecademy project)
-// Terminal application to generate random inspirational quotations
-
-// 150 inspirational quotations taken from https://everydaypower.com/short-inspirational-quotes/
-// Currently included as a literal string as I don't know how to read files into JS
-const quotations = `1. “There are two ways of spreading light: to be the candle or the mirror that reflects it.”  – Edith Wharton
+1. “There are two ways of spreading light: to be the candle or the mirror that reflects it.”  – Edith Wharton
 
 2. “You do not find the happy life. You make it.” – Camilla Eyring Kimball
 
@@ -333,9 +327,4 @@ Other short positive quotes and sayings
 
 149. “Happiness is not something ready made. It comes from your own actions.” – Dalai Lama
 
-150. “Life is too short to waste your time on people who don’t respect, appreciate, and value you.” – Roy T. Bennett`;
-const quotationsArray = quotations.split('\n');
-
-for(let i = 0; i < quotationsArray.length; i++) {
-    console.log(i, quotationsArray[i]);
-}
+150. “Life is too short to waste your time on people who don’t respect, appreciate, and value you.” – Roy T. Bennett
