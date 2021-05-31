@@ -4,7 +4,7 @@
 
 // 150 inspirational quotations taken from https://everydaypower.com/short-inspirational-quotes/
 // Currently included as a literal string as I don't know how to read files into JS
-const quotations = `1. “There are two ways of spreading light: to be the candle or the mirror that reflects it.”  – Edith Wharton
+let quotations = `1. “There are two ways of spreading light: to be the candle or the mirror that reflects it.”  – Edith Wharton
 
 2. “You do not find the happy life. You make it.” – Camilla Eyring Kimball
 
@@ -180,21 +180,18 @@ Short inspirational quotes to keep you moving forward
 80. “Overcome the notion that you must be regular. It robs you of the chance to be extraordinary.” – Uta Hagen
 
 Short inspirational quotes to empower you
-81. “Do what you feel in your heart to be right – for you’ll be criticized anyway.“
-Eleanor Roosevelt
+81. “Do what you feel in your heart to be right – for you’ll be criticized anyway.” – Eleanor Roosevelt
 
-82. Take time to do what makes your soul happy.”
+82. “Take time to do what makes your soul happy.”
 
-83. “Pain is temporary. Quitting lasts forever.“
-Lance Armstrong
+83. “Pain is temporary. Quitting lasts forever.” – Lance Armstrong
 
-84. The bird a nest, the spider a web, man friendship. William Blake
+84. “The bird a nest, the spider a web, man friendship.” – William Blake
 
-85. “When one door of happiness closes, another opens.“
-Helen Keller
+85. “When one door of happiness closes, another opens.” – Helen Keller
 If you’re enjoying these quotes, you’ll love our collection of the pursuit of happiness quotes that will make you smile.
 
-86. Sadness flies away on the wings of time. Jean de La Fontaine
+86. “Sadness flies away on the wings of time.” – Jean de La Fontaine
 
 87. “It is not the mountain we conquer but ourselves.” – Edmund Hillary
 
@@ -334,8 +331,39 @@ Other short positive quotes and sayings
 149. “Happiness is not something ready made. It comes from your own actions.” – Dalai Lama
 
 150. “Life is too short to waste your time on people who don’t respect, appreciate, and value you.” – Roy T. Bennett`;
-const quotationsArray = quotations.split('\n');
+// Replace curly single and double quotation marks with simple ones
+quotations = quotations.replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"');
+// Replace en-dashes with hyphens
+quotations = quotations.replace(/[\u2013]/g, "-");
+
+// Create array of lines
+let quotationsArray = quotations.split('\n');
+// Filter out all lines that do not start with a number
+quotationsArray = quotationsArray.filter(line => !isNaN(line[0]));
 
 for(let i = 0; i < quotationsArray.length; i++) {
-    console.log(i, quotationsArray[i]);
+    let line = quotationsArray[i]
+    let quotation = line.match(/"(.*?)"/)[0];
+    let author = line.split('-')[1];
+    if (author !== undefined) {
+        author = author.trim();
+    } else {
+        author = ''
+    }
+    quotationsArray[i] = {quotation, author}
 }
+
+// Create three distinct random indices
+let index1 = Math.floor(Math.random() * quotationsArray.length);
+let index2 = Math.floor(Math.random() * quotationsArray.length);
+while (index2 === index1) {
+    index2 = Math.floor(Math.random() * quotationsArray.length);
+}
+let index3 = Math.floor(Math.random() * quotationsArray.length);
+while (index3 === index1 || index3 === index2) {
+    index3 = Math.floor(Math.random() * quotationsArray.length);
+}
+
+console.log(`${quotationsArray[index1].quotation} - ${quotationsArray[index1].author}`);
+console.log(`${quotationsArray[index2].quotation} - ${quotationsArray[index2].author}`);
+console.log(`${quotationsArray[index3].quotation} - ${quotationsArray[index3].author}`);
